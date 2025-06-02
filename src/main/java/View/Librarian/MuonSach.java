@@ -99,7 +99,7 @@ public class MuonSach extends JPanel {
             pnl_Header.add(lbl_icon);
         }
 
-        JLabel lbl_Title = new JLabel("NHÀ SÁCH MINI");
+        JLabel lbl_Title = new JLabel("THƯ VIỆN MINI");
         lbl_Title.setFont(new Font("Arial", Font.BOLD, 24));
         lbl_Title.setForeground(Color.WHITE);
         lbl_Title.setBorder(null);

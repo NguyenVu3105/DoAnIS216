@@ -285,13 +285,15 @@ public class PenaltyTicket extends JPanel {
 	            String tenSach = dsSach.isEmpty() ? "Không tìm thấy tên sách" : dsSach.get(0).getTenSach();
 	            
 	            // Lọc theo từ khóa
-	            if (!keyword.equals("Nhập tên sách") && !tenSach.toLowerCase().contains(keyword.toLowerCase())) {
+	            if (!keyword.equals("Nhập tên sách") && !keyword.isEmpty() && !tenSach.toLowerCase().contains(keyword.toLowerCase())) {
 	                continue;
 	            }
 	            
 	            JPanel pnl_item = new JPanel(new BorderLayout());
 	            pnl_item.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	            pnl_item.setPreferredSize(new Dimension(0, 80));
+	            pnl_item
+
+	    .setPreferredSize(new Dimension(0, 80));
 	            pnl_item.setBackground(new Color(240, 233, 222));
 	            pnl_item.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 	            
@@ -314,10 +316,14 @@ public class PenaltyTicket extends JPanel {
 	            pnl_item.addMouseListener(new MouseAdapter() {
 	                @Override
 	                public void mouseClicked(MouseEvent e) {
-	                    pnl_listContainer.removeAll();
-	                    pnl_listContainer.add(createDetailPanel(phieu.getMaSach(), phieu.getLoi(), phieu.getGiaTien()));
-	                    pnl_listContainer.revalidate();
-	                    pnl_listContainer.repaint();
+	                    // Xóa toàn bộ nội dung của pnl_content
+	                    pnl_content.removeAll();
+	                    // Thêm panel chi tiết
+	                    JPanel pnl_detail = createDetailPanel(phieu.getMaSach(), phieu.getLoi(), phieu.getGiaTien());
+	                    pnl_content.add(pnl_detail);
+	                    // Cập nhật giao diện
+	                    pnl_content.revalidate();
+	                    pnl_content.repaint();
 	                }
 
 	                @Override
@@ -334,7 +340,7 @@ public class PenaltyTicket extends JPanel {
 	            });
 	            
 	            pnl_listContainer.add(pnl_item);
-	            pnl_listContainer.add(Box.createVerticalStrut(10));  // Khoảng cách giữa các phiếu phạt
+	            pnl_listContainer.add(Box.createVerticalStrut(10)); // Khoảng cách giữa các phiếu phạt
 	        }
 	        
 	        pnl_listContainer.revalidate();
