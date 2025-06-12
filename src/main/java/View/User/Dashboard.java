@@ -236,12 +236,6 @@ public class Dashboard extends JPanel {
 
     List<LichSuMuonSach> notifications = borrowList.stream()
             .filter(ls -> ls.getTrangThai().equals("Chưa trả"))
-            .filter(ls -> {
-                if (ls.getNgayTra() == null) return false;
-                long dueDateMillis = ls.getNgayTra().getTime();
-                long diff = dueDateMillis - today.getTime();
-                return diff < oneDayMillis; // Include overdue and due within one day
-            })
             .collect(Collectors.toList());
 
     if (notifications.isEmpty()) {
